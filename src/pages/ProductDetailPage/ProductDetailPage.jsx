@@ -1,74 +1,66 @@
 import './ProductDetailPage.css';
 import Navbar from '../../components/layout/Navbar/Navbar';
 import Footer from '../../components/layout/Footer/Footer';
-import Button from '../../components/ui/Button/Button';
 
-const ProductDetailPage = ({ product, onAddToCart, onBack }) => {
-  if (!product) return null;
-
+const ProductDetailPage = () => {
   return (
     <div className="page-wrapper">
       <Navbar />
       
       <main className="page-content pdp-page">
         <div className="container">
-          <button className="back-btn" onClick={onBack}>
+          <a href="/catalog" className="back-btn" style={{textDecoration: 'none', display: 'inline-block'}}>
             &larr; Back to Catalog
-          </button>
+          </a>
           
           <div className="product-details-container">
             {/* Image Gallery */}
             <div className="product-gallery">
               <div className="main-image-container">
                 <img 
-                  src={product.image || 'https://via.placeholder.com/600'} 
-                  alt={product.title} 
+                  src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&q=80" 
+                  alt="Premium Wireless Headphones" 
                   className="main-image"
                 />
               </div>
-              {product.images && product.images.length > 1 && (
-                <div className="thumbnail-list">
-                  {product.images.map((img, index) => (
-                    <div key={index} className="thumbnail-container">
-                      <img src={img} alt={`${product.title} ${index + 1}`} />
-                    </div>
-                  ))}
+              <div className="thumbnail-list">
+                <div className="thumbnail-container">
+                  <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&q=80" alt="Premium Wireless Headphones 1" />
                 </div>
-              )}
+                <div className="thumbnail-container">
+                  <img src="https://images.unsplash.com/photo-1484704849700-f032a568e944?w=600&q=80" alt="Premium Wireless Headphones 2" />
+                </div>
+              </div>
             </div>
 
             {/* Product Info */}
             <div className="product-info-panel">
               <div className="pdp-header">
-                {product.category && (
-                  <span className="pdp-category">{product.category}</span>
-                )}
-                <h1 className="pdp-title">{product.title}</h1>
-                <p className="pdp-price">${Number(product.price).toFixed(2)}</p>
+                <span className="pdp-category">Electronics</span>
+                <h1 className="pdp-title">Premium Wireless Headphones</h1>
+                <p className="pdp-price">$299.99</p>
               </div>
 
               <div className="pdp-description">
                 <h3>Description</h3>
-                <p>{product.description || 'No description available for this product.'}</p>
+                <p>Experience crystal clear sound with our premium wireless headphones. Features active noise cancellation and a 30-hour battery life.</p>
               </div>
 
               <div className="pdp-actions">
                 <div className="quantity-selector">
                   <label htmlFor="quantity">Quantity</label>
                   <select id="quantity" defaultValue={1} className="quantity-select">
-                    {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(num => (
-                      <option key={num} value={num}>{num}</option>
-                    ))}
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
                   </select>
                 </div>
                 
-                <Button 
-                  size="lg" 
-                  className="add-to-cart-large-btn"
-                  onClick={() => onAddToCart && onAddToCart(product)}
-                >
+                <button className="btn btn-primary btn-lg add-to-cart-large-btn">
                   Add to Cart
-                </Button>
+                </button>
               </div>
               
               <div className="pdp-features">
